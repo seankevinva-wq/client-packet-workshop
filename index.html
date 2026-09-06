@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I Got A Client, Now What? — The Client Packet</title>
+<meta name="description" content="A workshop on the document that unblocks a stalled client project.">
+<meta name="theme-color" content="#010102">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ---- Linear tokens ------------------------------------------------- */
+:root{
+  --accent:#5e6ad2; --accent-hi:#828fff;
+  --ink:#f7f8f8; --ink-muted:#d0d6e0; --ink-subtle:#8a8f98; --ink-tertiary:#62666d;
+  --canvas:#010102; --s1:#0f1011; --s2:#141516; --s3:#18191a;
+  --hair:#23252a; --hair-strong:#34343a;
+  --ok:#27a644; --warn:#c99a3a;
+  /* one modular scale, ratio 1.6, five sizes only (rule 7) */
+  --t-xl:110px; --t-lg:72px; --t-md:44px; --t-body:28px; --t-cap:22px;
+  /* 8pt grid (rule 15) */
+  --sp1:8px; --sp2:16px; --sp3:24px; --sp4:32px; --sp5:48px;
+  --sp6:64px; --sp7:96px; --sp8:128px;
+  --safe:96px; /* 5% of 1920 (rule 5) */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;overflow:hidden;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+
+#stage{position:fixed;inset:0;display:grid;place-items:center}
+.slide{
+  position:absolute;width:1920px;height:1080px;background:var(--canvas);color:var(--ink);
+  padding:var(--safe);display:none;flex-direction:column;
+  transform-origin:center center;
+}
+.slide.on{display:flex}
+
+/* ---- type ---------------------------------------------------------- */
+h1{font-size:var(--t-xl);font-weight:600;line-height:1.05;letter-spacing:-3px}
+h2{font-size:var(--t-lg);font-weight:600;line-height:1.1;letter-spacing:-1.8px}
+h3{font-size:var(--t-md);font-weight:600;line-height:1.15;letter-spacing:-1px}
+p{font-size:var(--t-body);line-height:1.5;letter-spacing:-.05px;color:var(--ink-muted);max-width:56ch}
+.cap{font-size:var(--t-cap);line-height:1.5;color:var(--ink-subtle)}
+.accent{color:var(--accent-hi)}
+.kicker{font-size:var(--t-cap);font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent-hi);margin-bottom:var(--sp4)}
+.rule{width:88px;height:5px;background:var(--accent);border-radius:3px;margin:var(--sp5) 0}
+
+/* ---- layout helpers ------------------------------------------------ */
+.mid{margin:auto 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp7);
+  align-items:center;flex:1;align-content:center}
+.grow{flex:1;display:flex;flex-direction:column;justify-content:center}
+.stack>*+*{margin-top:var(--sp3)}
+.foot{position:absolute;left:var(--safe);right:var(--safe);bottom:var(--sp5);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:var(--t-cap);color:var(--ink-tertiary)}
+
+/* ---- cards / panels ------------------------------------------------ */
+.panel{background:var(--s1);border:1px solid var(--hair);border-radius:14px;padding:var(--sp5)}
+.panel h3{margin-bottom:var(--sp3)}
+.panel.lit{border-color:var(--accent);background:#111327}
+
+/* ---- list styles --------------------------------------------------- */
+ul{list-style:none}
+.ticks li,.boxes li{position:relative;padding:var(--sp2) 0 var(--sp2) var(--sp5);
+  font-size:var(--t-body);color:var(--ink-muted);border-bottom:1px solid var(--hair)}
+.ticks li:last-child,.boxes li:last-child{border-bottom:0}
+.ticks li::before{content:"";position:absolute;left:6px;top:30px;width:11px;height:20px;
+  border:solid var(--ok);border-width:0 3px 3px 0;transform:rotate(42deg)}
+.boxes li::before{content:"";position:absolute;left:0;top:26px;width:22px;height:22px;
+  border:2.5px solid var(--warn);border-radius:5px}
+.nums{counter-reset:n}
+.nums li{counter-increment:n;position:relative;padding:var(--sp3) 0 var(--sp3) var(--sp6);
+  font-size:var(--t-body);color:var(--ink-muted);border-bottom:1px solid var(--hair)}
+.nums li:last-child{border-bottom:0}
+.nums li::before{content:counter(n);position:absolute;left:0;top:var(--sp3);
+  width:40px;height:40px;border-radius:50%;background:var(--s3);color:var(--ink-subtle);
+  display:grid;place-items:center;font-size:var(--t-cap);font-weight:600}
+.nums li.first::before{background:var(--accent);color:#fff}
+.nums li.first{color:var(--ink)}
+
+/* ---- table --------------------------------------------------------- */
+table{border-collapse:collapse;width:100%;font-size:var(--t-body)}
+th{text-align:left;font-size:var(--t-cap);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-tertiary);font-weight:600;padding-bottom:var(--sp2);
+  border-bottom:1px solid var(--hair-strong)}
+td{padding:var(--sp3) var(--sp3) var(--sp3) 0;border-bottom:1px solid var(--hair);
+  color:var(--ink-muted);vertical-align:top}
+td.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace;color:var(--accent-hi);
+  font-size:var(--t-cap);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+/* ---- code block ---------------------------------------------------- */
+code.blk{display:block;background:var(--s2);border:1px solid var(--hair);border-radius:12px;
+  padding:var(--sp4) var(--sp5);font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:var(--t-cap);color:var(--accent-hi);letter-spacing:0;overflow-wrap:anywhere}
+
+/* ---- bespoke figures ----------------------------------------------- */
+.mock{background:var(--s1);border:1px solid var(--hair);border-radius:14px;overflow:hidden}
+.mock-bar{height:52px;background:var(--s3);border-bottom:1px solid var(--hair);
+  display:flex;align-items:center;gap:10px;padding:0 var(--sp3)}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--hair-strong)}
+.mock-body{padding:var(--sp4);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp2)}
+.frame{aspect-ratio:4/3;border:2px dashed var(--hair-strong);border-radius:8px;
+  display:grid;place-items:center;color:var(--ink-tertiary);font-size:var(--t-cap)}
+
+.fan{display:flex;align-items:center;gap:var(--sp5)}
+.fan .src{background:var(--accent);color:#fff;border-radius:12px;padding:var(--sp3) var(--sp4);
+  font-size:var(--t-md);font-weight:600;white-space:nowrap}
+.fan .arms{display:flex;flex-direction:column;gap:var(--sp2)}
+.fan .arm{background:var(--s2);border:1px solid var(--hair);border-left:4px solid var(--accent);
+  border-radius:0 8px 8px 0;padding:var(--sp2) var(--sp3);font-size:var(--t-cap);color:var(--ink-muted)}
+
+.loop{display:flex;align-items:center;gap:var(--sp3);flex-wrap:wrap}
+.step{background:var(--s1);border:1px solid var(--hair);border-radius:12px;
+  padding:var(--sp3) var(--sp4);font-size:var(--t-cap);color:var(--ink-muted);white-space:nowrap}
+.step.lit{border-color:var(--accent);color:var(--ink)}
+.arrow{color:var(--ink-tertiary);font-size:var(--t-md)}
+
+.chips{display:flex;gap:var(--sp3);flex-wrap:wrap;margin-top:var(--sp3)}
+.chip{border:1px solid var(--hair-strong);border-radius:999px;padding:12px var(--sp3);
+  font-size:var(--t-cap);color:var(--ink-subtle)}
+
+.big{font-size:200px;font-weight:700;line-height:1;letter-spacing:-8px;color:var(--accent-hi)}
+blockquote{font-size:var(--t-lg);font-weight:500;line-height:1.25;letter-spacing:-1.5px;
+  color:var(--ink);max-width:22ch}
+
+/* ---- progress ------------------------------------------------------ */
+#bar{position:fixed;left:0;top:0;height:3px;background:var(--accent);z-index:9;transition:width .2s}
+#hint{position:fixed;right:14px;bottom:12px;color:#3a3a40;font-size:13px;z-index:9}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+
+<!-- 1 ----------------------------------------------------------------- -->
+<section class="slide on">
+  <div class="mid">
+    <p class="kicker">Workshop &middot; 9 September 2026</p>
+    <h1>I Got A Client.<br>Now What?</h1>
+    <div class="rule"></div>
+    <p>The document that unblocks a stalled build, and the machine that writes it.</p>
+  </div>
+  <div class="foot"><span>AI Automations by Jack</span><span class="n"></span></div>
+</section>
+
+<!-- 2 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div class="two">
+    <div>
+      <p class="kicker">The wall</p>
+      <h2>Finished three<br>weeks ago.</h2>
+      <div class="rule"></div>
+      <p>Still not live. Not because of code.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="mock-body">
+        <div class="frame">no photo</div><div class="frame">no photo</div><div class="frame">no photo</div>
+        <div class="frame">no photo</div><div class="frame">no photo</div><div class="frame">no photo</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>The wall</span><span class="n"></span></div>
+</section>
+
+<!-- 3 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div class="two">
+    <div>
+      <p class="kicker">The whole reason</p>
+      <h2>Six photographs,<br>on a phone.</h2>
+      <div class="rule"></div>
+      <p>That is the entire distance between built and live.</p>
+    </div>
+    <div style="display:grid;place-items:center"><span class="big">6</span></div>
+  </div>
+  <div class="foot"><span>The wall</span><span class="n"></span></div>
+</section>
+
+<!-- 4 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">The reframe</p>
+    <blockquote>The client is not slow. Nobody ever told them exactly what to do.</blockquote>
+  </div>
+  <div class="foot"><span>The wall</span><span class="n"></span></div>
+</section>
+
+<!-- 5 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div>
+    <p class="kicker">The idea</p>
+    <h3>Every project is two lists</h3>
+  </div>
+  <div class="two" style="margin-top:var(--sp5);flex:1">
+    <div class="panel">
+      <h3>Built and working</h3>
+      <p class="cap">Buys trust. They cannot see the work, so they assume nothing is happening.</p>
+    </div>
+    <div class="panel lit">
+      <h3>Waiting on you</h3>
+      <p class="cap">Only they can supply it. Photos, a number, prices, permission, their story.</p>
+    </div>
+  </div>
+  <div class="foot"><span>The idea</span><span class="n"></span></div>
+</section>
+
+<!-- 6 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">Why one list fails</p>
+    <h2>A mixed list reads<br>as a status update.</h2>
+    <div class="rule"></div>
+    <p>So they do nothing. Two lists, the second addressed to them, reads as a job.</p>
+  </div>
+  <div class="foot"><span>The idea</span><span class="n"></span></div>
+</section>
+
+<!-- 7 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div>
+    <p class="kicker">The ranking rule</p>
+    <h3>Sort by what unblocks the most</h3>
+  </div>
+  <div class="grow">
+    <div class="fan">
+      <div class="src">Photographs</div>
+      <span class="arrow">&rarr;</span>
+      <div class="arms">
+        <div class="arm">the gallery</div>
+        <div class="arm">the homepage</div>
+        <div class="arm">the Google Business Profile</div>
+        <div class="arm">the Instagram grid</div>
+      </div>
+    </div>
+    <p style="margin-top:var(--sp5)">A dependency count, not a feeling. Print the number.</p>
+  </div>
+  <div class="foot"><span>The idea</span><span class="n"></span></div>
+</section>
+
+<!-- 8 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div class="two">
+    <div>
+      <p class="kicker">Keep them apart</p>
+      <h2>A decision is not<br>a deliverable.</h2>
+      <div class="rule"></div>
+      <p>A photo takes a minute. Choosing a business name takes a week. Mixing them makes the whole list feel heavy.</p>
+    </div>
+    <div class="stack">
+      <div class="panel"><h3>Jobs</h3><p class="cap">Send the photos. Send the number.</p></div>
+      <div class="panel"><h3>Decisions</h3><p class="cap">Three things to settle, on their own page.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>The idea</span><span class="n"></span></div>
+</section>
+
+<!-- 9 ----------------------------------------------------------------- -->
+<section class="slide">
+  <div>
+    <p class="kicker">How you find them</p>
+    <h3>A placeholder is a shape you can grep for</h3>
+  </div>
+  <div class="grow">
+    <table>
+      <tr><th>Tell in the code</th><th>What it means</th></tr>
+      <tr><td class="mono">/placeholder/*.jpg</td><td>No real photographs</td></tr>
+      <tr><td class="mono">555 0192</td><td>Placeholder phone number</td></tr>
+      <tr><td class="mono">from &pound;XX</td><td>No real prices</td></tr>
+      <tr><td class="mono">lorem ipsum</td><td>Their story is unwritten</td></tr>
+      <tr><td class="mono">action=""</td><td>Enquiries go nowhere</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span>The build</span><span class="n"></span></div>
+</section>
+
+<!-- 10 ---------------------------------------------------------------- -->
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">The discipline</p>
+    <h2>Grep first.<br>Model second.</h2>
+    <div class="rule"></div>
+    <p>The regex pass is free, instant, and never lies. Hand the model the results and ask it to phrase them for someone who does not code.</p>
+  </div>
+  <div class="foot"><span>The build</span><span class="n"></span></div>
+</section>
+
+<!-- 11 ---------------------------------------------------------------- -->
+<section class="slide">
+  <div class="two">
+    <div>
+      <p class="kicker">Voice</p>
+      <h3>Write to them,<br>not about them</h3>
+      <div class="rule"></div>
+      <p class="cap">"Your phone number", never "client phone number".</p>
+    </div>
+    <ul class="ticks">
+      <li>Every ask gets a reason</li>
+      <li>No jargon without a plain sentence beside it</li>
+      <li>Never make them feel late</li>
+      <li>It reads as a plan, not a chase</li>
+    </ul>
+  </div>
+  <div class="foot"><span>The build</span><span class="n"></span></div>
+</section>
+
+<!-- 12 ---------------------------------------------------------------- -->
+<section class="slide">
+  <div class="two">
+    <div>
+      <p class="kicker">The page that does the work</p>
+      <h3>The shot list</h3>
+      <div class="rule"></div>
+      <p class="cap">Tell a non photographer exactly what to stand where and photograph. Six to ten items. This is what actually unblocks projects.</p>
+    </div>
+    <ul class="boxes">
+      <li>The walled garden, wide, whole wall in frame</li>
+      <li>The same garden close up, stonework readable</li>
+      <li>A wall you repaired, flat or cloudy light</li>
+      <li>The team mid job, not posed</li>
+      <li>One before and one after, same spot</li>
+    </ul>
+  </div>
+  <div class="foot"><span>The build</span><span class="n"></span></div>
+</section>
+
+<!-- 13 ---------------------------------------------------------------- -->
+<section class="slide">
+  <div>
+    <p class="kicker">Where it ends up</p>
+    <h3>The packet is a document. The loop is the product.</h3>
+  </div>
+  <div class="grow">
+    <div class="loop">
+      <span class="step lit">Prompt</span><span class="arrow">&rarr;</span>
+      <span class="step lit">Skill</span><span class="arrow">&rarr;</span>
+      <span class="step">Loop</span><span class="arrow">&rarr;</span>
+      <span class="step">Routine</span>
+    </div>
+    <p style="margin-top:var(--sp5)">Monday morning, one message: which client is blocking which build, drafts already written.</p>
+    <div class="chips">
+      <span class="chip">It ticks items off by reading the code</span>
+      <span class="chip">Not by them saying "sent"</span>
+    </div>
+  </div>
+  <div class="foot"><span>The build</span><span class="n"></span></div>
+</section>
+
+<!-- 14 ---------------------------------------------------------------- -->
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">Yours, tonight</p>
+    <h2>Point it at a client<br>folder and send it.</h2>
+    <div class="rule"></div>
+    <code class="blk">git clone https://github.com/seankevinva-wq/client-packet ~/.claude/skills/client-packet</code>
+    <p style="margin-top:var(--sp4)">This is not admin. This is the difference between three clients and ten.</p>
+  </div>
+  <div class="foot"><span>Idea credit: Silvano Matthews, Epoch Digital</span><span class="n"></span></div>
+</section>
+
+</div>
+<div id="hint">&larr; &rarr; to move</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+
+  slides.forEach(function(s, n){
+    var tag = s.querySelector('.n');
+    if (tag) tag.textContent = (n + 1) + ' / ' + slides.length;
+  });
+
+  function fit(){
+    var k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    slides.forEach(function(s){ s.style.transform = 'scale(' + k + ')'; });
+  }
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, x){ s.classList.toggle('on', x === i); });
+    document.getElementById('bar').style.width =
+      ((i + 1) / slides.length * 100) + '%';
+    location.hash = i + 1;
+  }
+
+  addEventListener('resize', fit);
+  addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(i + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                    { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End')  show(slides.length - 1);
+  });
+  addEventListener('click', function(e){ show(i + (e.clientX < innerWidth / 3 ? -1 : 1)); });
+
+  fit();
+  show(parseInt(location.hash.slice(1), 10) - 1 || 0);
+})();
+</script>
+</body>
+</html>
