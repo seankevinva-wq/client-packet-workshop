@@ -194,6 +194,14 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
   border-left:5px solid var(--accent);padding-left:var(--sp3)}
 .punch em{font-style:normal;color:var(--accent-hi)}
 
+/* ---- how the take-home reaches them ----------------------------- */
+.handout{margin-top:var(--sp5);background:var(--s1);border:1px solid var(--hair);
+  border-left:5px solid var(--accent);border-radius:0 12px 12px 0;
+  padding:var(--sp4) var(--sp5);max-width:760px}
+.handout p{margin:0;font-size:var(--t-body);color:var(--ink-muted);max-width:none}
+.handout p+p{margin-top:var(--sp2)}
+.handout strong{color:var(--accent-hi);font-weight:600}
+
 /* ---- progress ------------------------------------------------------ */
 #bar{position:fixed;left:0;top:0;height:3px;background:var(--accent);z-index:9;transition:width .2s}
 #hint{position:fixed;right:14px;bottom:12px;color:#3a3a40;font-size:13px;z-index:9}
@@ -534,9 +542,13 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
     <p class="kicker">Yours, tonight</p>
     <h2>Point it at a client<br>and run the whole thing.</h2>
     <div class="rule"></div>
-    <code class="blk">git clone https://github.com/seankevinva-wq/client-packet ~/.claude/skills/client-packet</code>
-    <p style="margin-top:var(--sp4)">Two commands. One at kickoff, one every check-in.
+    <p>Two commands. One the day you win them, one every check-in.
       No API key, nothing to configure.</p>
+    <div class="handout">
+      <p><strong>How you get it</strong></p>
+      <p>I will drop the link in the Zoom comments during the session, and attach it
+         to the workshop replay once it is up in the community.</p>
+    </div>
   </div>
   <div class="foot"><span>Idea credit: Silvano Matthews</span><span class="n"></span></div>
 </section>
