@@ -227,6 +227,33 @@ body.grid .slide .foot{opacity:.85}
 .rung.dear .what{color:var(--ink)}
 .rung.dear .cost{color:var(--warn)}
 
+/* ---- the six headings, named ------------------------------------- */
+.headings{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2) var(--sp5);width:100%}
+.hd{display:flex;gap:var(--sp3);align-items:baseline;padding:var(--sp2) 0;
+  border-bottom:1px solid var(--hair)}
+.hd .beat-no{flex:0 0 auto;font-size:var(--t-cap);font-weight:600;color:var(--accent-hi)}
+.hd .name{font-size:var(--t-body);color:var(--ink);font-weight:600}
+.hd .why{font-size:var(--t-cap);color:var(--ink-subtle);margin-left:auto;text-align:right}
+
+/* ---- Monday morning, every client at once ------------------------- */
+.clients{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp3);width:100%}
+.client{background:var(--s1);border:1px solid var(--hair);border-radius:12px;
+  padding:var(--sp4);display:flex;flex-direction:column;gap:var(--sp2)}
+.client h3{font-size:var(--t-body);letter-spacing:-.4px}
+.client .state{font-size:var(--t-cap);font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;padding:4px 10px;border-radius:999px;align-self:flex-start}
+.client .state.block{background:#2a220f;color:var(--warn);border:1px solid #5a4a1e}
+.client .state.go{background:#0f2418;color:#3ecf7a;border:1px solid #1e5a34}
+.client p{font-size:var(--t-cap);color:var(--ink-subtle);margin:0;max-width:none}
+.client .say{margin-top:auto;padding-top:var(--sp2);border-top:1px solid var(--hair);
+  font-size:var(--t-cap);color:var(--ink)}
+.client .say b{color:var(--accent-hi);font-weight:600}
+
+/* ---- the closing statement ---------------------------------------- */
+.finale{font-size:var(--t-lg);font-weight:600;line-height:1.22;letter-spacing:-1.6px;
+  color:var(--ink);max-width:24ch}
+.finale em{font-style:normal;color:var(--accent-hi)}
+
 /* ---- progress ------------------------------------------------------ */
 #bar{position:fixed;left:0;top:0;height:3px;background:var(--accent);z-index:9;transition:width .2s}
 #hint{position:fixed;right:14px;bottom:12px;color:#3a3a40;font-size:13px;z-index:9}
@@ -349,6 +376,7 @@ body.grid .slide .foot{opacity:.85}
         sentence they understand.</p>
     </div>
     <figure class="shot"><img src="doc-agreed.png" alt="The what we agreed section"></figure>
+    <p class="figcap">Marlowe &amp; Sons, page one of their packet.</p>
   </div>
   <div class="foot"><span>2 · Get clear</span><span class="n"></span></div>
 </section>
@@ -409,23 +437,29 @@ body.grid .slide .foot{opacity:.85}
         separately, once this is live.</p>
     </div>
     <figure class="shot"><img src="doc-out.png" alt="The what is not in this section"></figure>
+    <p class="figcap">Marlowe &amp; Sons again. The line runs through the Instagram job, not around it.</p>
   </div>
   <div class="foot"><span>3 · Scope creep</span><span class="n"></span></div>
 </section>
 
 <section class="slide">
-  <div class="two">
-    <div>
-      <p class="kicker">Beat four</p>
-      <h2>One document.<br>Six headings.</h2>
-      <div class="rule"></div>
-      <p class="cap">Not an email. Not a chat message they scroll past. A document
-        with their name on it, that says what we agreed, what is excluded, the order
-        of work, what is done, and what you need from them.</p>
-    </div>
-    <figure class="shot clip"><img src="doc-full.png" alt="The client packet"></figure>
+  <div>
+    <p class="kicker">Beat four</p>
+    <h3>One document. These six headings, every time.</h3>
   </div>
-  <div class="foot"><span>4 · The document</span><span class="n"></span></div>
+  <div class="grow" style="margin-top:var(--sp4)">
+    <div class="headings">
+      <div class="hd"><span class="beat-no">1</span><span class="name">What we agreed</span><span class="why">the job, in their words</span></div>
+      <div class="hd"><span class="beat-no">4</span><span class="name">Built and working</span><span class="why">proof you are moving</span></div>
+      <div class="hd"><span class="beat-no">2</span><span class="name">What is not in this</span><span class="why">the line, drawn early</span></div>
+      <div class="hd"><span class="beat-no">5</span><span class="name">Waiting on you</span><span class="why">ranked, not listed</span></div>
+      <div class="hd"><span class="beat-no">3</span><span class="name">The roadmap</span><span class="why">order, and what blocks what</span></div>
+      <div class="hd"><span class="beat-no">6</span><span class="name">What happens next</span><span class="why">the date of the next one</span></div>
+    </div>
+    <p style="margin-top:var(--sp4)">Not an email. Not a chat message they scroll past.
+      A document with their name on it.</p>
+  </div>
+  <div class="foot"><span>4 &middot; The document</span><span class="n"></span></div>
 </section>
 
 <section class="slide">
@@ -463,18 +497,6 @@ body.grid .slide .foot{opacity:.85}
 </section>
 
 <section class="slide">
-  <div>
-    <p class="kicker">The roadmap just said "cannot start until you send: photos"</p>
-    <h3>This is what that actually means</h3>
-  </div>
-  <div class="grow" style="margin-top:var(--sp3)">
-    <figure class="shot"><img src="site-gallery.png" alt="The gallery holding six empty frames"></figure>
-    <p class="figcap">The site is finished and it cannot go live. Not because of code. Because six photographs never arrived.</p>
-  </div>
-  <div class="foot"><span>5 · The roadmap</span><span class="n"></span></div>
-</section>
-
-<section class="slide">
   <div class="mid">
     <p class="kicker">Why the roadmap earns its place</p>
     <h2>A blocked phase stops<br>everything behind it.</h2>
@@ -488,22 +510,36 @@ body.grid .slide .foot{opacity:.85}
 
 <section class="slide">
   <div>
-    <p class="kicker">So what do they do first?</p>
-    <h3>Rank by what unblocks the most. Then print the number.</h3>
+    <p class="kicker">Marlowe &amp; Sons, phase three</p>
+    <h3>This is what "waiting on you" actually looks like</h3>
+  </div>
+  <div class="grow" style="margin-top:var(--sp3)">
+    <figure class="shot"><img src="site-gallery.png" alt="The gallery holding six empty frames"></figure>
+    <p class="figcap">The site is finished and it cannot go live. Not because of code. Because six photographs never arrived.</p>
+  </div>
+  <div class="foot"><span>5 · The roadmap</span><span class="n"></span></div>
+</section>
+
+<section class="slide">
+  <div>
+    <p class="kicker">So which one do they do first?</p>
+    <h3>Rank by what it unblocks. Then print the number.</h3>
   </div>
   <div class="grow">
     <div class="fan">
-      <div class="src">Photographs</div>
+      <div class="src">Send the photographs</div>
       <span class="arrow">&rarr;</span>
       <div class="arms">
-        <div class="arm">Phase 3</div><div class="arm">Phase 4</div>
-        <div class="arm">the Google Business Profile</div><div class="arm">the Instagram grid</div>
+        <div class="arm">Phase 3 can start</div>
+        <div class="arm">Phase 4 can start</div>
+        <div class="arm">the Google Business Profile goes up</div>
+        <div class="arm">the Instagram grid gets filled</div>
       </div>
     </div>
-    <p style="margin-top:var(--sp5)">A dependency count, not a feeling. Not what is
-      hardest, not what annoys you most.</p>
+    <p class="punch" style="margin-top:var(--sp4)">So the packet says, in their language:<br>
+      "This one unblocks <em>4 other things</em>."</p>
   </div>
-  <div class="foot"><span>5 · The roadmap</span><span class="n"></span></div>
+  <div class="foot"><span>5 &middot; The roadmap</span><span class="n"></span></div>
 </section>
 
 <section class="slide">
@@ -529,20 +565,35 @@ body.grid .slide .foot{opacity:.85}
 <section class="slide">
   <div class="mid">
     <p class="kicker">Beat six</p>
+    <h2>Do the first one by hand.</h2>
+    <div class="rule"></div>
+    <p>Open the project. Look at what actually changed since last week. Tick off
+       what is genuinely done, move what is still missing to the top, write the
+       three lines that say where you are, and send it.</p>
+    <p class="punch">Ten minutes per client, per week.<br>Fine for two clients.
+       Impossible at ten.</p>
+  </div>
+  <div class="foot"><span>6 &middot; Check in</span><span class="n"></span></div>
+</section>
+
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">So hand that part over</p>
     <h2>It ticks itself off by<br>reading the code.</h2>
     <div class="rule"></div>
     <p>A client will tell you the photographs are sent. The repo tells you whether
-       they arrived. Never mark something done because somebody said so.</p>
+       they arrived. The check-in reads the project the same way you just did by
+       hand, and never marks something done because somebody said so.</p>
   </div>
-  <div class="foot"><span>6 · Check in</span><span class="n"></span></div>
+  <div class="foot"><span>6 &middot; Check in</span><span class="n"></span></div>
 </section>
 
 <section class="slide">
   <div>
-    <p class="kicker">The check-in, every Monday</p>
+    <p class="kicker">Live, on Marlowe &amp; Sons</p>
     <h3>Re-read the project. Rewrite the document.</h3>
   </div>
-  <div class="grow" style="margin-top:var(--sp4)">
+  <div class="grow" style="margin-top:var(--sp3)">
     <div class="term">
       <div class="cmd">&gt; use client-packet &mdash; check in on ~/projects/marlowe</div>
       <div class="dim">5 files scanned.</div>
@@ -551,32 +602,48 @@ body.grid .slide .foot{opacity:.85}
       <div class="warn">&nbsp;&nbsp;unblocked: Phase 4 &middot; Go live properly</div>
       <div class="dim">3 still outstanding. Now version 5, written to packet.html.</div>
     </div>
-    <p style="margin-top:var(--sp4)">Two asks landed, so a phase opened itself and the
-      document rewrote itself. Nobody typed a status update.</p>
+    <p style="margin-top:var(--sp3)">George sent two things. A phase opened itself,
+      the packet rewrote itself, and version 5 is ready to send. Nobody typed a
+      status update.</p>
   </div>
-  <div class="foot"><span>6 · Check in</span><span class="n"></span></div>
+  <div class="foot"><span>6 &middot; Check in</span><span class="n"></span></div>
 </section>
 
 <section class="slide">
   <div>
-    <p class="kicker">Where it ends up</p>
-    <h3>The document is the deliverable. The loop is the product.</h3>
+    <p class="kicker">Now run it against everything you have open</p>
+    <h3>Monday morning. One pass. Three different emails.</h3>
   </div>
-  <div class="grow">
-    <div class="loop">
-      <span class="step lit">Prompt</span><span class="arrow">&rarr;</span>
-      <span class="step lit">Skill</span><span class="arrow">&rarr;</span>
-      <span class="step">Loop</span><span class="arrow">&rarr;</span>
-      <span class="step">Routine</span>
+  <div class="grow" style="margin-top:var(--sp3)">
+    <div class="clients">
+      <div class="client">
+        <h3>Marlowe &amp; Sons</h3>
+        <span class="state block">Phase 3 blocked</span>
+        <p>Waiting on: prices, about copy, email address.</p>
+        <p class="say">Send: <b>the three prices</b>. It is the only thing left
+          before phase 3 starts.</p>
+      </div>
+      <div class="client">
+        <h3>Halstead Joinery</h3>
+        <span class="state go">Phase 2, moving</span>
+        <p>Nothing outstanding. Four things shipped since last Monday.</p>
+        <p class="say">Send: <b>nothing</b>. Here is what got built. Next update
+          Monday.</p>
+      </div>
+      <div class="client">
+        <h3>Vine &amp; Co</h3>
+        <span class="state block">Phase 1 blocked</span>
+        <p>Waiting on: domain login. Blocking every phase after it.</p>
+        <p class="say">Send: <b>the domain login</b>. Nothing can happen without
+          it.</p>
+      </div>
     </div>
-    <p style="margin-top:var(--sp5)">Monday morning, one message: every client, which
-      phase they are blocking, and the documents already written.</p>
     <div class="chips">
-      <span class="chip">Three clients becomes ten</span>
-      <span class="chip">Without hiring anyone</span>
+      <span class="chip">Prompt</span><span class="chip">Skill</span>
+      <span class="chip">Loop</span><span class="chip">Routine &mdash; you are here</span>
     </div>
   </div>
-  <div class="foot"><span>6 · Check in</span><span class="n"></span></div>
+  <div class="foot"><span>6 &middot; Check in</span><span class="n"></span></div>
 </section>
 
 <section class="slide">
@@ -586,11 +653,23 @@ body.grid .slide .foot{opacity:.85}
   </div>
   <div class="two" style="margin-top:var(--sp4)">
     <div class="panel lit"><h3>Write down what is not included</h3>
-      <p class="cap">On day one, in the same breath as what is. It is the cheapest
-        hour you will ever spend.</p></div>
+      <p class="cap">On day one, in the same breath as what is. The line goes
+        through the deliverable, not around it.</p></div>
     <div class="panel lit"><h3>Rank by what it unblocks</h3>
-      <p class="cap">And print the number in the document. "This one unblocks four
-        other things" is what makes a client act.</p></div>
+      <p class="cap">And print the number. "This one unblocks four other things"
+        is what makes a client act.</p></div>
+  </div>
+  <div class="foot"><span>Yours, tonight</span><span class="n"></span></div>
+</section>
+
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">And the whole thing in one line</p>
+    <p class="finale">You either <em>front-load</em> the cost of getting clear,<br>
+      or you pay it <em>every week</em> you work with them.</p>
+    <div class="rule"></div>
+    <p>An hour on day one, or an argument a month for six months. It is the same
+       money. You just choose when you spend it, and whether you get paid for it.</p>
   </div>
   <div class="foot"><span>Yours, tonight</span><span class="n"></span></div>
 </section>
@@ -598,10 +677,11 @@ body.grid .slide .foot{opacity:.85}
 <section class="slide">
   <div class="mid">
     <p class="kicker">Yours, tonight</p>
-    <h2>Point it at a client<br>and run the whole thing.</h2>
+    <h2>The skill we just built,<br>pointed at your client.</h2>
     <div class="rule"></div>
-    <p>Two commands. One the day you win them, one every check-in.
-      No API key, nothing to configure.</p>
+    <p>Two commands. One the day you win them, one every check-in. It writes the
+       six headings, ranks what you are waiting on, and rewrites itself every week.
+       No API key, nothing to configure.</p>
     <div class="handout">
       <p><strong>How you get it</strong></p>
       <p>I will drop the link in the Zoom comments during the session, and attach it
@@ -610,7 +690,6 @@ body.grid .slide .foot{opacity:.85}
   </div>
   <div class="foot"><span>Idea credit: Silvano Matthews</span><span class="n"></span></div>
 </section>
-
 </div>
 <div id="hint">&larr; &rarr; to move</div>
 

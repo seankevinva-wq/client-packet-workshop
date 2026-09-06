@@ -2,7 +2,7 @@
 
 Workshop deck. **Live: https://client-packet-workshop.vercel.app**
 
-24 slides, 16:9, presenter mode. Built with
+26 slides, 16:9, presenter mode. Built with
 [power-design](https://github.com/ItsssssJack/power-design) using the Linear
 brand system.
 
@@ -18,10 +18,14 @@ handshake to the handover. Six beats:
 | 3 | Kill scope creep | 9-12 |
 | 4 | Send the document | 13-14 |
 | 5 | Build to a roadmap | 15-19 |
-| 6 | Check in | 20-22 |
+| 6 | Check in | 20-23 |
 
 Slides 1-4 set up where the question came from and map the six beats.
-Slides 23-24 are the two takeaways and the take-home.
+Slides 24-26 are the two takeaways, the closing line, and the take-home.
+
+Beat 6 goes manual first, then automatic: do one check-in by hand, see why
+that does not scale, watch it read the repo instead, then run it across every
+open client at once.
 
 Beat 3 works the scope-creep lesson on the source post's own words: what
 "getting his Instagram set up" could mean, and where the line goes.
