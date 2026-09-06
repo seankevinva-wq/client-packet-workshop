@@ -202,6 +202,31 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
 .handout p+p{margin-top:var(--sp2)}
 .handout strong{color:var(--accent-hi);font-weight:600}
 
+/* ---- grid overview (press g) ------------------------------------- */
+body.grid #stage{display:grid;place-items:start;align-content:start;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:20px;padding:28px 28px 80px;overflow:auto;background:#08080a}
+body.grid .slide{display:flex !important;position:relative;
+  transform:none !important;zoom:.1563;   /* 1920 -> 300px */
+  border:6px solid var(--hair);border-radius:0;cursor:pointer;
+  transition:border-color .12s ease}
+body.grid .slide:hover{border-color:var(--ink-subtle)}
+body.grid .slide.cur{border-color:var(--accent)}
+body.grid #bar{display:none}
+body.grid .slide .foot{opacity:.85}
+
+/* ---- the same words, five different jobs ------------------------- */
+.ladder{width:100%;display:flex;flex-direction:column;gap:2px}
+.rung{display:flex;align-items:center;gap:var(--sp3);padding:var(--sp2) var(--sp3);
+  background:var(--s1);border:1px solid var(--hair);border-radius:8px}
+.rung .what{flex:1;font-size:var(--t-body);color:var(--ink-muted)}
+.rung .cost{font-size:var(--t-cap);font-weight:600;color:var(--ink-subtle);white-space:nowrap}
+.rung.cheap{border-left:4px solid #27a644}
+.rung.cheap .cost{color:#3ecf7a}
+.rung.dear{border-left:4px solid var(--warn);background:#17140c}
+.rung.dear .what{color:var(--ink)}
+.rung.dear .cost{color:var(--warn)}
+
 /* ---- progress ------------------------------------------------------ */
 #bar{position:fixed;left:0;top:0;height:3px;background:var(--accent);z-index:9;transition:width .2s}
 #hint{position:fixed;right:14px;bottom:12px;color:#3a3a40;font-size:13px;z-index:9}
@@ -341,6 +366,39 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
 </section>
 
 <section class="slide">
+  <div>
+    <p class="kicker">Back to what he promised</p>
+    <h3>"Getting his Instagram set up" &mdash; set up how, exactly?</h3>
+  </div>
+  <div class="grow" style="margin-top:var(--sp4)">
+    <div class="ladder">
+      <div class="rung cheap"><span class="what">Create the account</span><span class="cost">20 minutes</span></div>
+      <div class="rung cheap"><span class="what">Logo, bio, links, highlights</span><span class="cost">an hour</span></div>
+      <div class="rung"><span class="what">Nine posts so the grid is not empty</span><span class="cost">a day</span></div>
+      <div class="rung dear"><span class="what">Posting twice a week</span><span class="cost">forever</span></div>
+      <div class="rung dear"><span class="what">Answering the DMs that come in</span><span class="cost">forever</span></div>
+    </div>
+    <p style="margin-top:var(--sp4)">Five words. Twenty minutes, or the rest of your life.
+      He does not know which one he sold. Neither does his client.</p>
+  </div>
+  <div class="foot"><span>3 &middot; Scope creep</span><span class="n"></span></div>
+</section>
+
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">And this is the move</p>
+    <h2>You are not saying no.<br>You are drawing the line.</h2>
+    <div class="rule"></div>
+    <p>"Set up" stays in. "Run it" comes out. Same deliverable, with an edge on it.
+       Say it once, in writing, on day one, and the conversation three weeks from
+       now is thirty seconds instead of an argument.</p>
+    <p class="punch">The line does not go <em>around</em> the deliverable.<br>It goes
+       <em>through</em> it.</p>
+  </div>
+  <div class="foot"><span>3 &middot; Scope creep</span><span class="n"></span></div>
+</section>
+
+<section class="slide">
   <div class="two">
     <div>
       <p class="kicker">Beat three, done</p>
@@ -405,6 +463,18 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
 </section>
 
 <section class="slide">
+  <div>
+    <p class="kicker">The roadmap just said "cannot start until you send: photos"</p>
+    <h3>This is what that actually means</h3>
+  </div>
+  <div class="grow" style="margin-top:var(--sp3)">
+    <figure class="shot"><img src="site-gallery.png" alt="The gallery holding six empty frames"></figure>
+    <p class="figcap">The site is finished and it cannot go live. Not because of code. Because six photographs never arrived.</p>
+  </div>
+  <div class="foot"><span>5 · The roadmap</span><span class="n"></span></div>
+</section>
+
+<section class="slide">
   <div class="mid">
     <p class="kicker">Why the roadmap earns its place</p>
     <h2>A blocked phase stops<br>everything behind it.</h2>
@@ -432,18 +502,6 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
     </div>
     <p style="margin-top:var(--sp5)">A dependency count, not a feeling. Not what is
       hardest, not what annoys you most.</p>
-  </div>
-  <div class="foot"><span>5 · The roadmap</span><span class="n"></span></div>
-</section>
-
-<section class="slide">
-  <div>
-    <p class="kicker">And this is what blocked looks like</p>
-    <h3>Finished. And it still cannot go live.</h3>
-  </div>
-  <div class="grow" style="margin-top:var(--sp3)">
-    <figure class="shot"><img src="site-gallery.png" alt="The gallery holding six empty frames"></figure>
-    <p class="figcap">Not because of code. Because six photographs never arrived.</p>
   </div>
   <div class="foot"><span>5 · The roadmap</span><span class="n"></span></div>
 </section>
@@ -559,6 +617,7 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
 <script>
 (function(){
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var hint = document.getElementById('hint');
   var i = 0;
 
   slides.forEach(function(s, n){
@@ -579,17 +638,61 @@ mark{background:rgba(94,106,210,.26);color:var(--ink);
     location.hash = i + 1;
   }
 
-  addEventListener('resize', fit);
+  function inGrid(){ return document.body.classList.contains('grid'); }
+
+  function mark(){
+    slides.forEach(function(s, x){ s.classList.toggle('cur', x === i); });
+    var c = slides[i];
+    if (c) c.scrollIntoView({block: 'nearest'});
+  }
+
+  function setGrid(on){
+    document.body.classList.toggle('grid', on);
+    if (on) {
+      slides.forEach(function(s){ s.style.transform = 'none'; });
+      mark();
+    } else {
+      slides.forEach(function(s){ s.classList.remove('cur'); });
+      fit();
+      show(i);
+    }
+    hint.textContent = on ? 'click a slide, or esc' : '\u2190 \u2192 to move  \u00b7  g for grid';
+  }
+
+  addEventListener('resize', function(){ if (!inGrid()) fit(); });
+
   addEventListener('keydown', function(e){
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(i + 1); }
-    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                    { e.preventDefault(); show(i - 1); }
-    if (e.key === 'Home') show(0);
-    if (e.key === 'End')  show(slides.length - 1);
+    if (e.key === 'g' || e.key === 'G') { e.preventDefault(); setGrid(!inGrid()); return; }
+    if (e.key === 'Escape' && inGrid())  { e.preventDefault(); setGrid(false); return; }
+
+    var back = (e.key === 'ArrowLeft' || e.key === 'PageUp');
+    var fwd  = (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown');
+    if (!back && !fwd && e.key !== 'Home' && e.key !== 'End') return;
+    e.preventDefault();
+
+    var n = i;
+    if (fwd)  n = i + 1;
+    if (back) n = i - 1;
+    if (e.key === 'Home') n = 0;
+    if (e.key === 'End')  n = slides.length - 1;
+    n = Math.max(0, Math.min(slides.length - 1, n));
+
+    if (inGrid()) { i = n; mark(); }   // move the selection, stay in the grid
+    else          { show(n); }
   });
-  addEventListener('click', function(e){ show(i + (e.clientX < innerWidth / 3 ? -1 : 1)); });
+
+  addEventListener('click', function(e){
+    if (inGrid()) {
+      var s = e.target.closest('.slide');
+      if (s) { i = slides.indexOf(s); setGrid(false); }
+      return;
+    }
+    show(i + (e.clientX < innerWidth / 3 ? -1 : 1));
+  });
 
   fit();
   show(parseInt(location.hash.slice(1), 10) - 1 || 0);
+  hint.textContent = '\u2190 \u2192 to move  \u00b7  g for grid';
 })();
 </script>
 </body>
