@@ -1,37 +1,43 @@
-# I Got A Client, Now What? — The Client Packet
+# I Got A Client, Now What?
 
 Workshop deck. **Live: https://client-packet-workshop.vercel.app**
 
-19 slides, 16:9, presenter mode. Built with
+22 slides, 16:9, presenter mode. Built with
 [power-design](https://github.com/ItsssssJack/power-design) using the Linear
 brand system.
 
+## What it teaches
+
+Not "how to build a website". How to **run a client project** from the
+handshake to the handover. Six beats:
+
+| # | Beat | Slides |
+|---|---|---|
+| 1 | You won them | 5-6 |
+| 2 | Get crystal clear | 7-8 |
+| 3 | Kill scope creep | 9-10 |
+| 4 | Send the document | 11-12 |
+| 5 | Build to a roadmap | 13-17 |
+| 6 | Check in | 18-20 |
+
+Slides 1-4 set up where the question came from and map the six beats.
+Slides 21-22 are the two takeaways and the take-home.
+
+One worked example runs the whole way through: **Marlowe & Sons**, a four
+person landscaping firm, from won on a Monday to delivered.
+
 ## Presenting
 
-- `→` / `space` / click right — next
-- `←` / click left — back
-- `Home` / `End` — first / last
+- `->` / `space` / click right - next
+- `<-` / click left - back
+- `Home` / `End` - first / last
 
-The frame is a fixed 1920×1080 and scales to fit any window, so full-screen the
+The frame is a fixed 1920x1080 and scales to fit any window, so full-screen the
 browser and it fills the projector.
 
-## Structure
+## The take-home
 
-| Slides | Part |
-|--------|------|
-| 1–5 | Where this came from — the post, the man who solved it by hand, and the document we are making |
-| 6–9 | The wall — a finished client site that cannot go live |
-| 10–13 | The idea — two lists, and ranking by what unblocks the most |
-| 14–17 | How you build it — the tells, grep-first, voice, the shot list |
-| 18–19 | Where it goes, and the take-home |
-
-Slides 1–5 exist so someone who never saw the source post is not lost.
-
-## The session
-
-Run for **AI Automations by Jack**, 9 September 2026.
-
-The take-home is a separate repo:
+The skill people clone on the night lives in a separate repo:
 [seankevinva-wq/client-packet](https://github.com/seankevinva-wq/client-packet).
 
 Idea credit: **Silvano Matthews**, Epoch Digital.
