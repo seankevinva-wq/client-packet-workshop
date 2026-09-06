@@ -227,6 +227,22 @@ body.grid .slide .foot{opacity:.85}
 .rung.dear .what{color:var(--ink)}
 .rung.dear .cost{color:var(--warn)}
 
+/* ---- a short spoken line, set big ------------------------------- */
+.quote{font-size:var(--t-md);font-weight:600;line-height:1.3;letter-spacing:-.6px;
+  color:var(--ink);max-width:none}
+
+/* ---- the Instagram deliverable, drawn ---------------------------- */
+.ig{background:var(--s1);border:1px solid var(--hair);border-radius:14px;overflow:hidden;
+  max-width:540px}
+.ig-head{display:flex;align-items:center;gap:var(--sp2);padding:var(--sp3);
+  border-bottom:1px solid var(--hair)}
+.ig-av{width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-size:var(--t-body);font-weight:600}
+.ig-name{font-size:var(--t-cap);font-weight:600;color:var(--ink)}
+.ig-sub{font-size:var(--t-cap);color:var(--ink-tertiary)}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp1);padding:var(--sp3)}
+.ig-grid span{aspect-ratio:1;border:2px dashed var(--hair-strong);border-radius:6px}
+
 /* ---- the six headings, named ------------------------------------- */
 .headings{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp2) var(--sp5);width:100%}
 .hd{display:flex;gap:var(--sp3);align-items:baseline;padding:var(--sp2) 0;
@@ -343,14 +359,28 @@ body.grid .slide .foot{opacity:.85}
 <section class="slide">
   <div>
     <p class="kicker">Tonight's worked example</p>
-    <h3>Marlowe &amp; Sons, a four person landscaping firm</h3>
+    <h3>Marlowe &amp; Sons. Same deal, one client, all the way through.</h3>
   </div>
-  <div class="grow" style="margin-top:var(--sp3)">
-    <figure class="shot"><img src="site-hero.png" alt="The Marlowe and Sons website"></figure>
-    <p class="figcap">We will take one client the whole way: won on day one, scoped,
-      roadmapped, built, chased, delivered. This is where it ends up.</p>
+  <div class="two" style="margin-top:var(--sp3)">
+    <div>
+      <div class="post" style="padding:var(--sp3) var(--sp4)">
+        <p class="quote">"We need a website. And get us on Instagram."</p>
+        <div class="post-meta">George Marlowe, on the phone, the day he said yes.</div>
+      </div>
+      <ul class="sections" style="margin-top:var(--sp3)">
+        <li><b>Four people</b>, thirty seven years, landscaping in Somerset</li>
+        <li><b>A website and an Instagram.</b> The same two things as the post</li>
+        <li>No photographs, no prices, no phone number he has decided on</li>
+        <li>Nothing written down. A handshake, and a client who is keen</li>
+      </ul>
+    </div>
+    <div>
+      <figure class="shot"><img src="site-hero.png" alt="The Marlowe and Sons website"></figure>
+      <p class="figcap">Where it ends up. Every slide from here is this one client:
+        scoped, roadmapped, built, chased, delivered.</p>
+    </div>
   </div>
-  <div class="foot"><span>1 · You won them</span><span class="n"></span></div>
+  <div class="foot"><span>1 &middot; You won them</span><span class="n"></span></div>
 </section>
 
 <section class="slide">
@@ -361,6 +391,8 @@ body.grid .slide .foot{opacity:.85}
     <p>It is a wish. A job is a list of outcomes they can nod at. If you cannot
        write that list, you do not yet know what you sold, and that is the finding,
        not a delay.</p>
+    <p class="punch">George gave us <em>nine words</em>.<br>Page one of his packet
+       turned them into <em>six outcomes</em> he could nod at.</p>
   </div>
   <div class="foot"><span>2 · Get clear</span><span class="n"></span></div>
 </section>
@@ -395,8 +427,8 @@ body.grid .slide .foot{opacity:.85}
 
 <section class="slide">
   <div>
-    <p class="kicker">Back to what he promised</p>
-    <h3>"Getting his Instagram set up" &mdash; set up how, exactly?</h3>
+    <p class="kicker">George's second sentence</p>
+    <h3>"Get us on Instagram." Set up how, exactly?</h3>
   </div>
   <div class="grow" style="margin-top:var(--sp4)">
     <div class="ladder">
@@ -406,8 +438,48 @@ body.grid .slide .foot{opacity:.85}
       <div class="rung dear"><span class="what">Posting twice a week</span><span class="cost">forever</span></div>
       <div class="rung dear"><span class="what">Answering the DMs that come in</span><span class="cost">forever</span></div>
     </div>
-    <p style="margin-top:var(--sp4)">Five words. Twenty minutes, or the rest of your life.
-      He does not know which one he sold. Neither does his client.</p>
+    <p style="margin-top:var(--sp4)">Four words from George. Five in the post. Either way it is
+      twenty minutes or the rest of your life, and nobody has said which.</p>
+  </div>
+  <div class="foot"><span>3 &middot; Scope creep</span><span class="n"></span></div>
+</section>
+
+<section class="slide">
+  <div>
+    <p class="kicker">So we drew the line, and wrote it down</p>
+    <h3>The Instagram job, with an edge on it</h3>
+  </div>
+  <div class="two" style="margin-top:var(--sp3);grid-template-columns:540px 1fr">
+    <div>
+      <div class="ig">
+        <div class="ig-head">
+          <div class="ig-av">M</div>
+          <div><div class="ig-name">marloweandsons</div>
+          <div class="ig-sub">Landscaping &middot; Somerset</div></div>
+        </div>
+        <div class="ig-grid">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <p class="figcap">Nine tiles, then it is done. The same photographs fill
+        his website gallery.</p>
+    </div>
+    <div>
+      <ul class="ticks">
+        <li>Account made, name and bio written</li>
+        <li>Logo, links and highlights in place</li>
+        <li>The first nine photographs posted</li>
+      </ul>
+      <ul class="boxes" style="margin-top:var(--sp4)">
+        <li>Posting after those first nine</li>
+        <li>Answering the messages that come in</li>
+      </ul>
+      <p class="cap" style="margin-top:var(--sp4)">Ticked is in the price. Squared is
+        separate work, quoted separately, once this is live.</p>
+      <p class="punch" style="margin-top:var(--sp4)">One ask.<br><em>Two deliverables.</em></p>
+    </div>
   </div>
   <div class="foot"><span>3 &middot; Scope creep</span><span class="n"></span></div>
 </section>
@@ -502,8 +574,9 @@ body.grid .slide .foot{opacity:.85}
     <h2>A blocked phase stops<br>everything behind it.</h2>
     <div class="rule"></div>
     <p>This is the sentence that gets a client to act. Not "please send the photos".
-       Say "phase three and phase four are both sitting still until they arrive",
-       and show them the phases sitting still.</p>
+       Say "phase three and phase four of your site are both sitting still until they
+       arrive, and your Instagram cannot open without them", and show him the phases
+       sitting still.</p>
   </div>
   <div class="foot"><span>5 · The roadmap</span><span class="n"></span></div>
 </section>
@@ -530,10 +603,10 @@ body.grid .slide .foot{opacity:.85}
       <div class="src">Send the photographs</div>
       <span class="arrow">&rarr;</span>
       <div class="arms">
-        <div class="arm">Phase 3 can start</div>
-        <div class="arm">Phase 4 can start</div>
-        <div class="arm">the Google Business Profile goes up</div>
-        <div class="arm">the Instagram grid gets filled</div>
+        <div class="arm">Phase 3 &middot; his real content can start</div>
+        <div class="arm">Phase 4 &middot; going live properly can start</div>
+        <div class="arm">his Google Business Profile goes up</div>
+        <div class="arm">the first nine Instagram posts go out</div>
       </div>
     </div>
     <p class="punch" style="margin-top:var(--sp4)">So the packet says, in their language:<br>
@@ -549,13 +622,15 @@ body.grid .slide .foot{opacity:.85}
       <h3>The shot list</h3>
       <div class="rule"></div>
       <p class="cap">"Send some photos" gets nothing. Tell a non photographer exactly
-        what to stand where and photograph, on a phone, and it arrives.</p>
+        what to stand where and photograph, on a phone, and it arrives. This is the
+        list that fills his gallery and seeds his Instagram grid.</p>
     </div>
     <ul class="boxes">
-      <li>The walled garden, wide, whole wall in frame</li>
+      <li>The walled garden at Croscombe, wide, whole wall in frame</li>
       <li>The same garden close up, stonework readable</li>
-      <li>A wall you repaired, flat or cloudy light</li>
-      <li>The team mid job, not posed</li>
+      <li>The terrace and steps at Wells, from the house looking out</li>
+      <li>A dry stone wall you repaired, flat or cloudy light</li>
+      <li>The team mid job, anyone, not posed</li>
       <li>One before and one after, same spot</li>
     </ul>
   </div>
