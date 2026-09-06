@@ -270,6 +270,11 @@ body.grid .slide .foot{opacity:.85}
   color:var(--ink);max-width:24ch}
 .finale em{font-style:normal;color:var(--accent-hi)}
 
+/* ---- build steps: one card at a time ------------------------------ */
+.frag{opacity:.14;filter:saturate(.15);transition:opacity .22s ease,filter .22s ease}
+.frag.in{opacity:1;filter:none}
+body.grid .frag{opacity:1 !important;filter:none !important}
+
 /* ---- progress ------------------------------------------------------ */
 #bar{position:fixed;left:0;top:0;height:3px;background:var(--accent);z-index:9;transition:width .2s}
 #hint{position:fixed;right:14px;bottom:12px;color:#3a3a40;font-size:13px;z-index:9}
@@ -333,12 +338,12 @@ body.grid .slide .foot{opacity:.85}
   </div>
   <div class="grow" style="margin-top:var(--sp4);padding-bottom:var(--sp5)">
     <div class="map">
-      <div class="beat lit"><div class="no">1</div><div><h3>You won them</h3><p>A handshake and no plan</p></div></div>
-      <div class="beat lit"><div class="no">2</div><div><h3>Get crystal clear</h3><p>"A website" is not a job</p></div></div>
-      <div class="beat lit"><div class="no">3</div><div><h3>Kill scope creep</h3><p>Write down what is not in it</p></div></div>
-      <div class="beat lit"><div class="no">4</div><div><h3>Send the document</h3><p>Everyone on the same page</p></div></div>
-      <div class="beat lit"><div class="no">5</div><div><h3>Build to a roadmap</h3><p>Order, and what blocks what</p></div></div>
-      <div class="beat lit"><div class="no">6</div><div><h3>Check in</h3><p>So it never goes stale</p></div></div>
+      <div class="beat lit frag"><div class="no">1</div><div><h3>You won them</h3><p>A handshake and no plan</p></div></div>
+      <div class="beat lit frag"><div class="no">2</div><div><h3>Get crystal clear</h3><p>"A website" is not a job</p></div></div>
+      <div class="beat lit frag"><div class="no">3</div><div><h3>Kill scope creep</h3><p>Write down what is not in it</p></div></div>
+      <div class="beat lit frag"><div class="no">4</div><div><h3>Send the document</h3><p>Everyone on the same page</p></div></div>
+      <div class="beat lit frag"><div class="no">5</div><div><h3>Build to a roadmap</h3><p>Order, and what blocks what</p></div></div>
+      <div class="beat lit frag"><div class="no">6</div><div><h3>Check in</h3><p>So it never goes stale</p></div></div>
     </div>
   </div>
   <div class="foot"><span>The map</span><span class="n"></span></div>
@@ -346,7 +351,7 @@ body.grid .slide .foot{opacity:.85}
 
 <section class="slide">
   <div class="mid">
-    <p class="kicker">Beat one</p>
+    <p class="kicker">Step one</p>
     <h2>Day one. You won them.<br>Now what?</h2>
     <div class="rule"></div>
     <p>You have a handshake, a rough idea, and their enthusiasm. You have no
@@ -385,7 +390,7 @@ body.grid .slide .foot{opacity:.85}
 
 <section class="slide">
   <div class="mid">
-    <p class="kicker">Beat two</p>
+    <p class="kicker">Step two</p>
     <h2>"I need a website"<br>is not a job.</h2>
     <div class="rule"></div>
     <p>It is a wish. A job is a list of outcomes they can nod at. If you cannot
@@ -400,7 +405,7 @@ body.grid .slide .foot{opacity:.85}
 <section class="slide">
   <div class="two">
     <div>
-      <p class="kicker">Beat two, done</p>
+      <p class="kicker">Step two, done</p>
       <h3>Outcomes, in their words</h3>
       <div class="rule"></div>
       <p class="cap">Not "responsive design". Say "it works properly on a phone,
@@ -415,7 +420,7 @@ body.grid .slide .foot{opacity:.85}
 
 <section class="slide">
   <div class="mid">
-    <p class="kicker">Beat three</p>
+    <p class="kicker">Step three</p>
     <h2>The section everybody skips.</h2>
     <div class="rule"></div>
     <p>Every unpaid job you have ever been dragged into was something nobody wrote
@@ -501,7 +506,7 @@ body.grid .slide .foot{opacity:.85}
 <section class="slide">
   <div class="two">
     <div>
-      <p class="kicker">Beat three, done</p>
+      <p class="kicker">Step three, done</p>
       <h3>Write down what is <em>not</em> in it</h3>
       <div class="rule"></div>
       <p class="cap">In the same breath as what is. Not as a refusal, as a boundary.
@@ -516,7 +521,7 @@ body.grid .slide .foot{opacity:.85}
 
 <section class="slide">
   <div>
-    <p class="kicker">Beat four</p>
+    <p class="kicker">Step four</p>
     <h3>One document. These six headings, every time.</h3>
   </div>
   <div class="grow" style="margin-top:var(--sp4)">
@@ -557,7 +562,7 @@ body.grid .slide .foot{opacity:.85}
 <section class="slide">
   <div class="two">
     <div>
-      <p class="kicker">Beat five</p>
+      <p class="kicker">Step five</p>
       <h3>The roadmap you build against</h3>
       <div class="rule"></div>
       <p class="cap">Three to five phases. Each one an outcome they understand, not
@@ -639,7 +644,7 @@ body.grid .slide .foot{opacity:.85}
 
 <section class="slide">
   <div class="mid">
-    <p class="kicker">Beat six</p>
+    <p class="kicker">Step six</p>
     <h2>Do the first one by hand.</h2>
     <div class="rule"></div>
     <p>Open the project. Look at what actually changed since last week. Tick off
@@ -784,12 +789,37 @@ body.grid .slide .foot{opacity:.85}
     slides.forEach(function(s){ s.style.transform = 'scale(' + k + ')'; });
   }
 
-  function show(n){
+  // ---- build steps ------------------------------------------------
+  // a slide may hold .frag elements that reveal one press at a time
+  var f = 0;   // how many are revealed on the current slide
+
+  function fragsOf(n){
+    return slides[n] ? slides[n].querySelectorAll('.frag') : [];
+  }
+  function paint(){
+    var fr = fragsOf(i);
+    for (var x = 0; x < fr.length; x++) fr[x].classList.toggle('in', x < f);
+  }
+
+  function show(n, revealAll){
     i = Math.max(0, Math.min(slides.length - 1, n));
+    f = revealAll ? fragsOf(i).length : 0;
     slides.forEach(function(s, x){ s.classList.toggle('on', x === i); });
+    paint();
     document.getElementById('bar').style.width =
       ((i + 1) / slides.length * 100) + '%';
     location.hash = i + 1;
+  }
+
+  // one press forward: next build step, or the next slide
+  function next(){
+    if (f < fragsOf(i).length) { f++; paint(); return; }
+    if (i < slides.length - 1) show(i + 1);
+  }
+  // one press back: previous build step, or the previous slide, fully built
+  function prev(){
+    if (f > 0) { f--; paint(); return; }
+    if (i > 0) show(i - 1, true);
   }
 
   function inGrid(){ return document.body.classList.contains('grid'); }
@@ -824,15 +854,21 @@ body.grid .slide .foot{opacity:.85}
     if (!back && !fwd && e.key !== 'Home' && e.key !== 'End') return;
     e.preventDefault();
 
-    var n = i;
-    if (fwd)  n = i + 1;
-    if (back) n = i - 1;
-    if (e.key === 'Home') n = 0;
-    if (e.key === 'End')  n = slides.length - 1;
-    n = Math.max(0, Math.min(slides.length - 1, n));
+    if (inGrid()) {                    // move the selection, stay in the grid
+      var n = i;
+      if (fwd)  n = i + 1;
+      if (back) n = i - 1;
+      if (e.key === 'Home') n = 0;
+      if (e.key === 'End')  n = slides.length - 1;
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      mark();
+      return;
+    }
 
-    if (inGrid()) { i = n; mark(); }   // move the selection, stay in the grid
-    else          { show(n); }
+    if (e.key === 'Home')     show(0);
+    else if (e.key === 'End') show(slides.length - 1, true);
+    else if (fwd)             next();
+    else                      prev();
   });
 
   addEventListener('click', function(e){
@@ -841,7 +877,7 @@ body.grid .slide .foot{opacity:.85}
       if (s) { i = slides.indexOf(s); setGrid(false); }
       return;
     }
-    show(i + (e.clientX < innerWidth / 3 ? -1 : 1));
+    if (e.clientX < innerWidth / 3) prev(); else next();
   });
 
   fit();
