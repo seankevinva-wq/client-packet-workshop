@@ -127,6 +127,34 @@ code.blk{display:block;background:var(--s2);border:1px solid var(--hair);border-
 blockquote{font-size:var(--t-lg);font-weight:500;line-height:1.25;letter-spacing:-1.5px;
   color:var(--ink);max-width:22ch}
 
+
+/* ---- screenshots ---------------------------------------------------- */
+.shot{border:1px solid var(--hair-strong);border-radius:12px;overflow:hidden;
+  background:var(--s1);width:fit-content;max-width:100%;margin-inline:auto}
+.shot img{display:block;width:auto;height:auto;max-width:100%;max-height:600px}
+/* .clip deliberately shows only the top of a tall document */
+.shot.clip{width:100%;max-height:600px}
+.shot.clip img{width:100%;height:600px;max-height:none;object-fit:cover;object-position:top}
+.figcap{margin-top:var(--sp2);font-size:var(--t-cap);color:var(--ink-tertiary)}
+
+/* ---- a community post, so newcomers know where this started --------- */
+.post{background:var(--s1);border:1px solid var(--hair);border-radius:14px;
+  padding:var(--sp4) var(--sp5);max-width:none}
+.post-head{display:flex;align-items:center;gap:var(--sp2);margin-bottom:var(--sp3)}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--accent);
+  display:grid;place-items:center;font-size:var(--t-cap);font-weight:600;color:#fff}
+.post-who{font-size:var(--t-cap);color:var(--ink);font-weight:600}
+.post-when{font-size:var(--t-cap);color:var(--ink-tertiary)}
+.post p{font-size:var(--t-body);color:var(--ink-muted);max-width:64ch}
+.post-meta{margin-top:var(--sp3);padding-top:var(--sp2);border-top:1px solid var(--hair);
+  font-size:var(--t-cap);color:var(--ink-tertiary)}
+
+/* ---- a plain labelled list, for the hand-made packet's sections ----- */
+.sections li{padding:14px 0;border-bottom:1px solid var(--hair);font-size:var(--t-body);
+  color:var(--ink-muted)}
+.sections li:last-child{border-bottom:0}
+.sections li b{color:var(--ink);font-weight:600}
+
 /* ---- progress ------------------------------------------------------ */
 #bar{position:fixed;left:0;top:0;height:3px;background:var(--accent);z-index:9;transition:width .2s}
 #hint{position:fixed;right:14px;bottom:12px;color:#3a3a40;font-size:13px;z-index:9}
@@ -147,22 +175,104 @@ blockquote{font-size:var(--t-lg);font-weight:500;line-height:1.25;letter-spacing
   <div class="foot"><span>AI Automations by Jack</span><span class="n"></span></div>
 </section>
 
-<!-- 2 ----------------------------------------------------------------- -->
+<!-- 2 · where this came from ----------------------------------------- -->
+<section class="slide">
+  <div>
+    <p class="kicker">Where this came from</p>
+    <h3>Someone posted this in here last week</h3>
+  </div>
+  <div class="grow">
+    <div class="post">
+      <div class="post-head">
+        <div class="avatar">SM</div>
+        <div>
+          <div class="post-who">Silvano Matthews &middot; Epoch Digital</div>
+          <div class="post-when">1 September 2026</div>
+        </div>
+      </div>
+      <p>"I made a trade with a construction worker where he did some work to my house
+      in exchange for 2 websites for his companies and getting his Instagram set up.
+      Is there a course for my position, where you got a client and how to implement
+      the Agency part?"</p>
+      <div class="post-meta">6 likes &middot; 6 comments, inside a day</div>
+    </div>
+  </div>
+  <div class="foot"><span>Where this came from</span><span class="n"></span></div>
+</section>
+
+<!-- 3 · not a beginner question -------------------------------------- -->
+<section class="slide">
+  <div class="mid">
+    <p class="kicker">Read it again</p>
+    <h2>He had already built<br>both websites.</h2>
+    <div class="rule"></div>
+    <p>It reads like a beginner question. It is not. What he was missing is the part
+       between "it is built" and "it is live". Nobody teaches that part.</p>
+  </div>
+  <div class="foot"><span>Where this came from</span><span class="n"></span></div>
+</section>
+
+<!-- 4 · he already solved it by hand --------------------------------- -->
 <section class="slide">
   <div class="two">
     <div>
-      <p class="kicker">The wall</p>
-      <h2>Finished three<br>weeks ago.</h2>
+      <p class="kicker">And he had already solved it</p>
+      <h3>By hand, in a day</h3>
       <div class="rule"></div>
-      <p>Still not live. Not because of code.</p>
+      <p class="cap">Silvano wrote his landscaping client a seven page packet. It is
+        good. It also took him a day, and he has to write another one for the next
+        client, and the one after that.</p>
     </div>
-    <div class="mock">
-      <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-      <div class="mock-body">
-        <div class="frame">no photo</div><div class="frame">no photo</div><div class="frame">no photo</div>
-        <div class="frame">no photo</div><div class="frame">no photo</div><div class="frame">no photo</div>
-      </div>
+    <ul class="sections">
+      <li><b>See them</b></li>
+      <li><b>Built and working</b></li>
+      <li><b>Waiting on you</b></li>
+      <li><b>What we need from you</b></li>
+      <li><b>Three things to settle</b></li>
+      <li><b>What happens next</b></li>
+    </ul>
+  </div>
+  <div class="foot"><span>Where this came from</span><span class="n"></span></div>
+</section>
+
+<!-- 5 · the destination ----------------------------------------------- -->
+<section class="slide">
+  <div class="two">
+    <div>
+      <p class="kicker">So here is tonight</p>
+      <h2>We build the machine<br>that writes it.</h2>
+      <div class="rule"></div>
+      <p class="cap">Point it at a client folder. It reads the code, works out what is
+        done and what is missing, ranks the missing, and writes this. You send it the
+        same night.</p>
     </div>
+    <figure class="shot clip"><img src="packet-top.png" alt="The generated client packet"></figure>
+  </div>
+  <div class="foot"><span>Where this came from</span><span class="n"></span></div>
+</section>
+
+<!-- 6 · meet the example client ------------------------------------- -->
+<section class="slide">
+  <div>
+    <p class="kicker">Tonight's example</p>
+    <h3>Marlowe &amp; Sons, a four person landscaping firm</h3>
+  </div>
+  <div class="grow" style="margin-top:var(--sp3)">
+    <figure class="shot"><img src="site-hero.png" alt="The finished Marlowe and Sons website"></figure>
+    <p class="figcap">You built them this. It is good. It is finished. It is on a live web address.</p>
+  </div>
+  <div class="foot"><span>The wall</span><span class="n"></span></div>
+</section>
+
+<!-- 7 · the wall ------------------------------------------------------ -->
+<section class="slide">
+  <div>
+    <p class="kicker">The wall</p>
+    <h3>Finished three weeks ago. Still not live.</h3>
+  </div>
+  <div class="grow" style="margin-top:var(--sp3)">
+    <figure class="shot"><img src="site-gallery.png" alt="The gallery, holding six empty frames"></figure>
+    <p class="figcap">Not because of code. Because six photographs never arrived.</p>
   </div>
   <div class="foot"><span>The wall</span><span class="n"></span></div>
 </section>
